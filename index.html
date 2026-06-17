@@ -1,0 +1,1054 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>不會寫程式也能用：Codex 5 個新手任務操作指南</title>
+  <style>
+    :root {
+      --paper: #f7f3eb;
+      --paper-deep: #efe7d9;
+      --ink: #171511;
+      --muted: #5d574d;
+      --soft: #8d8171;
+      --watermark: #d6cec3;
+      --orange: #f26b21;
+      --orange-dark: #d75612;
+      --yellow: #ffe98c;
+      --line: #c7bdaa;
+      --line-dark: #a99f8e;
+      --card: rgba(255, 253, 247, .9);
+      --white: #fffdf7;
+      --shadow: 0 18px 45px rgba(44, 36, 24, .08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 15% 4%, rgba(255, 255, 255, .66), transparent 28rem),
+        radial-gradient(circle at 86% 24%, rgba(255, 255, 255, .42), transparent 24rem),
+        linear-gradient(135deg, rgba(72, 58, 38, .022) 0 1px, transparent 1px 10px),
+        var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 24px 72px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      color: var(--watermark);
+      font-size: 24px;
+      font-weight: 950;
+      letter-spacing: 5px;
+    }
+
+    .hero {
+      padding: 72px 0 34px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .5);
+      color: var(--muted);
+      font-weight: 950;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      max-width: 900px;
+      margin: 28px 0 18px;
+      font-size: clamp(44px, 7vw, 86px);
+      line-height: 1.08;
+      letter-spacing: 0;
+      font-weight: 950;
+    }
+
+    .accent {
+      display: inline;
+      color: var(--orange);
+      background: linear-gradient(transparent 58%, rgba(255, 233, 140, .94) 58%);
+      padding: 0 8px;
+    }
+
+    .title-chunk {
+      display: inline;
+    }
+
+    .title-single {
+      white-space: nowrap;
+    }
+
+    .hero-lead {
+      max-width: 880px;
+      margin: 0;
+      color: #2e2a24;
+      font-size: clamp(20px, 2.5vw, 31px);
+      line-height: 1.48;
+      font-weight: 900;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 22px;
+      margin-top: 34px;
+      align-items: stretch;
+    }
+
+    .hero-card {
+      min-width: 0;
+      border: 2px solid var(--line);
+      border-radius: 22px;
+      background: var(--card);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card.strong {
+      border: 3px solid var(--ink);
+      box-shadow: 10px 10px 0 rgba(255, 233, 140, .72);
+    }
+
+    .hero-card h2,
+    .section h2 {
+      margin: 0 0 14px;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.16;
+      font-weight: 950;
+    }
+
+    .hero-card p,
+    .section p {
+      margin: 0 0 14px;
+      color: #332f28;
+      font-size: 19px;
+      font-weight: 780;
+    }
+
+    .toc {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      margin: 18px -24px 38px;
+      padding: 14px 24px;
+      border-block: 1px solid rgba(199, 189, 170, .72);
+      background: rgba(247, 243, 235, .92);
+      backdrop-filter: blur(14px);
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .toc-inner {
+      display: flex;
+      gap: 10px;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .tab {
+      border: 1px solid var(--line-dark);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .56);
+      color: var(--ink);
+      padding: 10px 15px;
+      font-size: 15px;
+      font-weight: 950;
+      text-decoration: none;
+      cursor: pointer;
+      transition: .18s ease;
+    }
+
+    .tab:hover,
+    .tab.active {
+      border-color: var(--ink);
+      background: var(--yellow);
+      transform: translateY(-1px);
+    }
+
+    .section {
+      scroll-margin-top: 96px;
+      margin-top: 34px;
+      border: 2px solid var(--line);
+      border-radius: 26px;
+      background: var(--card);
+      padding: clamp(22px, 4vw, 40px);
+      box-shadow: var(--shadow);
+    }
+
+    .section.feature {
+      border-color: var(--ink);
+      box-shadow: 10px 10px 0 rgba(255, 233, 140, .62);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .num {
+      display: grid;
+      place-items: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 1.5px solid var(--ink);
+      background: var(--yellow);
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 950;
+    }
+
+    .mini-label {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--orange);
+      color: #fff;
+      font-size: 16px;
+      line-height: 1;
+      font-weight: 950;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 14px 0 24px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border: 1px solid var(--line-dark);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .58);
+      color: #312d27;
+      font-size: 15px;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, .82fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .note,
+    .callout,
+    .source-card {
+      border: 1.5px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .46);
+      padding: 18px;
+    }
+
+    .callout {
+      border-color: rgba(242, 107, 33, .3);
+      background: rgba(255, 233, 140, .36);
+    }
+
+    .note h3,
+    .callout h3,
+    .source-card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      line-height: 1.22;
+      font-weight: 950;
+    }
+
+    .list {
+      display: grid;
+      gap: 9px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .list li {
+      position: relative;
+      padding-left: 22px;
+      color: #332f28;
+      font-weight: 780;
+    }
+
+    .list li::before {
+      content: "";
+      position: absolute;
+      left: 1px;
+      top: .74em;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+    }
+
+    .prompt {
+      position: relative;
+      margin-top: 20px;
+      border: 2px solid var(--ink);
+      border-radius: 20px;
+      overflow: hidden;
+      background: #171511;
+      box-shadow: 8px 8px 0 rgba(255, 233, 140, .56);
+    }
+
+    .prompt-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 15px;
+      background: #2b261e;
+      color: #fff;
+    }
+
+    .prompt-title {
+      font-size: 15px;
+      font-weight: 950;
+      letter-spacing: 1px;
+    }
+
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(255, 255, 255, .42);
+      border-radius: 999px;
+      background: var(--yellow);
+      color: var(--ink);
+      padding: 7px 11px;
+      font-size: 14px;
+      line-height: 1;
+      font-weight: 950;
+      cursor: pointer;
+    }
+
+    pre {
+      margin: 0;
+      padding: 18px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      color: #fff7df;
+      font-size: 15px;
+      line-height: 1.72;
+      font-family: "Microsoft JhengHei", "Noto Sans TC", Arial, sans-serif;
+    }
+
+    .replace {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .replace-row {
+      display: grid;
+      grid-template-columns: 132px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 12px;
+      border: 1px dashed var(--line-dark);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .42);
+    }
+
+    .replace-row b {
+      color: var(--orange-dark);
+      font-weight: 950;
+    }
+
+    .outputs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .output {
+      min-height: 76px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, .48);
+      padding: 14px;
+      font-weight: 900;
+    }
+
+    .footer {
+      margin-top: 44px;
+      padding-top: 24px;
+      border-top: 2px solid var(--line);
+      text-align: center;
+      color: var(--muted);
+      font-weight: 900;
+    }
+
+    .footer a {
+      color: var(--orange-dark);
+      font-weight: 950;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
+    }
+
+    @media (max-width: 820px) {
+      .page {
+        width: 100%;
+        max-width: 390px;
+        margin: 0 auto;
+        padding: 20px 16px 52px;
+      }
+
+      .brand {
+        flex-wrap: wrap;
+        font-size: 17px;
+        letter-spacing: 3px;
+      }
+
+      h1 {
+        max-width: 100%;
+        font-size: clamp(38px, 10.5vw, 46px);
+        word-break: break-all;
+        line-break: anywhere;
+        overflow-wrap: anywhere;
+      }
+
+      .accent {
+        display: inline;
+        word-break: break-all;
+        line-break: anywhere;
+        overflow-wrap: anywhere;
+      }
+
+      .accent.title-single {
+        display: inline-block;
+        font-size: clamp(24px, 6.7vw, 27px);
+        word-break: keep-all;
+        line-break: normal;
+        overflow-wrap: normal;
+        white-space: nowrap;
+      }
+
+      .title-chunk {
+        display: block;
+      }
+
+      .hero-lead {
+        max-width: 100%;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+      }
+
+      .hero {
+        padding-top: 46px;
+      }
+
+      .hero-grid,
+      .content-grid {
+        grid-template-columns: 1fr;
+        min-width: 0;
+      }
+
+      .hero-card,
+      .section,
+      .note,
+      .callout,
+      .source-card,
+      .prompt {
+        min-width: 0;
+      }
+
+      .toc {
+        margin-inline: -16px;
+        padding-inline: 16px;
+      }
+
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .num {
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+      }
+
+      .replace-row {
+        grid-template-columns: 1fr;
+      }
+
+      .outputs {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card,
+      .section {
+        border-radius: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="brand" aria-label="品牌">
+      <span>@MOFANS_2020</span>
+      <span>我媽叫我不要創業</span>
+    </header>
+
+    <section class="hero" id="top">
+      <div class="eyebrow">✦ Codex 新手指南 ✦</div>
+      <h1>
+        <span class="title-chunk">不會寫程式</span><span class="title-chunk">也能用</span>
+        <br>
+        <span class="accent title-single">Codex 的 5 個新手任務</span>
+      </h1>
+      <p class="hero-lead">你可能已經用過 ChatGPT、Claude 這類 AI 工具，知道它們可以回答問題、寫文案、整理想法。但 Codex 更像是可以幫你「執行任務」的 AI Agent。</p>
+
+      <div class="hero-grid">
+        <article class="hero-card strong">
+          <h2>這份指南會帶你做什麼？</h2>
+          <p>從 5 個最適合新手的情境開始，學會怎麼請 Codex 做小工具、檢查問題、整理文件、拆解自動化流程，以及梳理副業想法的 MVP 框架。</p>
+          <div class="tag-row" aria-label="指南重點">
+            <span class="tag">完整情境</span>
+            <span class="tag">可複製指令</span>
+            <span class="tag">替換欄位</span>
+            <span class="tag">新手練習</span>
+          </div>
+        </article>
+
+        <article class="hero-card">
+          <h2>適合這些人</h2>
+          <ul class="list">
+            <li>已經用過 GPT 或 Claude，但不知道 Codex 差在哪裡。</li>
+            <li>想把想法做成簡單工具，但不會寫程式。</li>
+            <li>常常要整理資料、檔案、名單或工作流程。</li>
+            <li>有副業想法，想先做出可以驗證的第一步。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <nav class="toc" aria-label="章節導覽">
+      <div class="toc-inner">
+        <a class="tab active" href="#start">開始前</a>
+        <a class="tab" href="#tool">1 做小工具</a>
+        <a class="tab" href="#debug">2 測試修正</a>
+        <a class="tab" href="#docs">3 整理文件</a>
+        <a class="tab" href="#automation">4 自動化</a>
+        <a class="tab" href="#mvp">5 MVP 框架</a>
+        <a class="tab" href="#formula">指令公式</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="section" id="start">
+        <span class="mini-label">開始前</span>
+        <h2>先從官方入口取得 Codex</h2>
+        <div class="content-grid">
+          <div>
+            <p>如果你是第一次使用 Codex，建議先從 OpenAI 官方入口開始，不要下載來路不明的工具或 App。</p>
+            <div class="outputs" aria-label="Codex 入口">
+              <div class="output">Codex Web<br><small>適合先體驗、不想安裝工具的人</small></div>
+              <div class="output">Codex App<br><small>適合用桌面介面處理資料夾或專案的人</small></div>
+              <div class="output">Codex CLI<br><small>適合想在電腦本機處理檔案或專案的人</small></div>
+              <div class="output">官方 GitHub<br><small>適合查看安裝說明與更新資訊</small></div>
+            </div>
+          </div>
+
+          <aside class="callout">
+            <h3>下載注意事項</h3>
+            <p>請優先從 OpenAI 官方頁面、<strong>chatgpt.com/codex</strong>，或 OpenAI 官方 GitHub 取得相關工具。不要下載名稱很像 Codex、但來源不明的第三方工具。</p>
+          </aside>
+        </div>
+
+        <div class="source-card" style="margin-top: 24px;">
+          <h3>先貼上你的任務設定</h3>
+          <p>這段不是複雜的永久設定，新手可以先把它貼在 <strong>Codex 新任務的第一則指令</strong>，讓 Codex 知道你的身份、語氣偏好與交付方式。</p>
+          <ul class="list">
+            <li><strong>Codex Web：</strong>到官方入口開啟 Codex，建立一個新任務，將這段貼在「輸入任務」的對話框中。</li>
+            <li><strong>Codex App：</strong>開啟你要工作的資料夾或專案，在新任務的第一則訊息貼上這段設定。</li>
+            <li><strong>Codex CLI：</strong>在專案資料夾開啟 Codex 後，把這段貼成第一則任務指令。若未來希望規則長期套用在同一個專案，再研究 AGENTS.md。</li>
+          </ul>
+
+          <div class="prompt">
+            <div class="prompt-head">
+              <span class="prompt-title">可複製設定</span>
+              <button class="copy-btn" type="button" data-copy="setup-prompt">複製</button>
+            </div>
+            <pre id="setup-prompt">接下來請你扮演我的 AI 執行助理，協助我把想法整理成可以實際使用的成果。
+
+我的身份是：
+【填入你的身份】
+
+我的工作目標是：
+【填入你的目標】
+
+請你回答時遵守以下原則：
+1. 使用繁體中文回答。
+2. 語氣簡潔、清楚、適合新手理解。
+3. 不要只給建議，請盡量幫我產出可以直接使用的版本。
+4. 如果資訊不足，請先問我關鍵問題。
+5. 如果任務可以拆步驟，請幫我拆成清楚的執行流程。
+6. 如果需要我提供檔案、網址、資料或外部工具，請明確告訴我。
+7. 完成後請整理你做了什麼，以及我下一步可以怎麼使用。
+
+接下來我要請你協助的任務是：
+【填入這次要完成的任務】</pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="section feature" id="tool">
+        <div class="section-head">
+          <div class="num">1</div>
+          <div>
+            <span class="mini-label">做小工具</span>
+            <h2>把想法做成小工具</h2>
+          </div>
+        </div>
+        <div class="tag-row">
+          <span class="tag">行銷企劃</span>
+          <span class="tag">內容創作者</span>
+          <span class="tag">社群經營者</span>
+          <span class="tag">副業新手</span>
+          <span class="tag">小型團隊</span>
+        </div>
+
+        <div class="content-grid">
+          <div>
+            <p>你每週都要想社群貼文主題，但靈感散在截圖、備忘錄、Threads 收藏、IG 收藏和 Google Sheet 裡。</p>
+            <p>真正要發文時，還要重新整理一次：哪些可以變成短影音？哪些適合發 IG 多圖？哪些可以延伸成電子報？哪些只是零碎想法？</p>
+            <p>這時候你可以請 Codex 幫你做一個簡單的「社群選題整理器」。第一版不用很完整，只要能輸入靈感、分類主題、標記平台，並整理出下一步方向，就已經可以提升效率。</p>
+          </div>
+          <aside class="note">
+            <h3>你需要準備</h3>
+            <ul class="list">
+              <li>你想整理的資料類型。</li>
+              <li>希望有哪些欄位。</li>
+              <li>想要工具做到哪些功能。</li>
+              <li>希望使用情境是手機還是電腦。</li>
+            </ul>
+          </aside>
+        </div>
+
+        <div class="prompt">
+          <div class="prompt-head">
+            <span class="prompt-title">可複製指令</span>
+            <button class="copy-btn" type="button" data-copy="tool-prompt">複製</button>
+          </div>
+          <pre id="tool-prompt">請幫我做一個簡單的【工具名稱】。
+
+我的使用情境是：
+【描述你遇到的問題】
+
+我希望這個工具可以做到：
+1. 【功能 1】
+2. 【功能 2】
+3. 【功能 3】
+4. 【功能 4】
+
+請先做出可以使用的第一版，不需要太複雜。
+
+畫面需求：
+1. 使用繁體中文
+2. 適合新手操作
+3. 手機也要方便閱讀
+4. 介面要清楚，不要太花俏
+
+完成後請幫我：
+1. 說明這個工具可以怎麼使用
+2. 檢查是否有明顯的功能問題
+3. 建議下一版可以優化什麼</pre>
+        </div>
+
+        <div class="replace">
+          <div class="replace-row"><b>可替換</b><span>【工具名稱】可以換成報名頁、記帳工具、待辦清單、客戶追蹤表。</span></div>
+          <div class="replace-row"><b>可能成果</b><span>簡單網頁工具、表單型工具、本機預覽 HTML 頁面、可再修改的第一版原型。</span></div>
+        </div>
+      </section>
+
+      <section class="section feature" id="debug">
+        <div class="section-head">
+          <div class="num">2</div>
+          <div>
+            <span class="mini-label">測試修正</span>
+            <h2>幫你找出問題並修正</h2>
+          </div>
+        </div>
+        <div class="tag-row">
+          <span class="tag">網站新手</span>
+          <span class="tag">小工具製作者</span>
+          <span class="tag">行銷頁設計</span>
+          <span class="tag">活動報名頁</span>
+          <span class="tag">表單流程</span>
+        </div>
+
+        <div class="content-grid">
+          <div>
+            <p>你已經請 Codex 做出一個簡單報名頁，看起來好像可以用。但實際測試時發現，送出按鈕沒有反應、手機版排版變形，或填完表單後沒有出現成功訊息。</p>
+            <p>如果自己不會寫程式，通常很難知道是哪裡出錯。這時候可以請 Codex 幫你檢查頁面流程、按鈕功能、手機版畫面，並直接修正。</p>
+          </div>
+          <aside class="callout">
+            <h3>需要先發布網站嗎？</h3>
+            <p>不一定。如果只是自己檢查，可以先用本機預覽方式測試。如果希望同事、客戶或粉絲也能打開測試，就需要發布成公開網址，再把網址貼給 Codex 檢查。</p>
+          </aside>
+        </div>
+
+        <div class="prompt">
+          <div class="prompt-head">
+            <span class="prompt-title">可複製指令</span>
+            <button class="copy-btn" type="button" data-copy="debug-prompt">複製</button>
+          </div>
+          <pre id="debug-prompt">請幫我檢查這個網頁是否有功能或排版問題。
+
+待檢查網址：
+【貼上你的網址】
+
+如果目前還沒有公開網址，請先幫我用本機預覽方式測試。
+
+這個頁面的主要流程是：
+【描述使用者應該怎麼操作，例如：填寫表單 → 點擊送出 → 看到成功訊息】
+
+請特別檢查：
+1. 按鈕是否可以正常點擊
+2. 表單流程是否完整
+3. 手機版是否有跑版
+4. 文字是否有超出區塊
+5. 使用者操作時是否會卡住
+
+如果有問題，請直接幫我修正，並告訴我你改了哪些地方。
+
+如果我想讓其他人也能測試，請建議我適合的發布方式。</pre>
+        </div>
+
+        <div class="replace">
+          <div class="replace-row"><b>你需要準備</b><span>待檢查網址或專案檔案、主要操作流程、希望檢查的項目、錯誤截圖或描述。</span></div>
+          <div class="replace-row"><b>可能成果</b><span>修正後的網頁版本、問題清單、修改紀錄、手機版排版調整、後續發布建議。</span></div>
+        </div>
+      </section>
+
+      <section class="section feature" id="docs">
+        <div class="section-head">
+          <div class="num">3</div>
+          <div>
+            <span class="mini-label">整理文件</span>
+            <h2>直接整理文件</h2>
+          </div>
+        </div>
+        <div class="tag-row">
+          <span class="tag">行政整理</span>
+          <span class="tag">課程企劃</span>
+          <span class="tag">顧問服務</span>
+          <span class="tag">內容整理</span>
+          <span class="tag">資料分析</span>
+        </div>
+
+        <div class="content-grid">
+          <div>
+            <p>你手上有很多資料，可能來自 Word、Excel、PDF、文字筆記或會議紀錄。有些資料是表格，有些是文字，有些是回饋，有些是零散摘要。</p>
+            <p>如果你只叫 AI「幫我整理」，它可能只會給你一段摘要。但如果你明確告訴 Codex 要輸出什麼格式，它就更容易幫你整理成可以交付的成果。</p>
+          </div>
+          <aside class="note">
+            <h3>建議輸出格式</h3>
+            <ul class="list">
+              <li>Markdown：適合操作手冊、文章、整理筆記。</li>
+              <li>CSV：適合表格資料，方便貼到 Excel 或 Google Sheets。</li>
+              <li>HTML：適合做成網頁版報告。</li>
+              <li>JSON：適合給工具或系統使用。</li>
+            </ul>
+          </aside>
+        </div>
+
+        <div class="prompt">
+          <div class="prompt-head">
+            <span class="prompt-title">可複製指令</span>
+            <button class="copy-btn" type="button" data-copy="docs-prompt">複製</button>
+          </div>
+          <pre id="docs-prompt">請讀取我提供的這些檔案，幫我整理成一份清楚的分析資料。
+
+我的資料內容是：
+【描述資料來源，例如：課程回饋、問卷回覆、會議紀錄、客戶訪談】
+
+我想分析的重點是：
+1. 【分析重點 1】
+2. 【分析重點 2】
+3. 【分析重點 3】
+
+請幫我輸出成：
+1. 一份 Markdown 文件，適合閱讀與分享
+2. 一份 CSV 表格，方便我貼到 Excel 或 Google Sheets
+
+Markdown 文件請包含：
+1. 重點摘要
+2. 主題分類
+3. 重複出現的問題或需求
+4. 可以行動的建議
+5. 後續可以延伸的方向
+
+CSV 表格請包含：
+1. 分類
+2. 原始重點
+3. 摘要
+4. 建議行動
+5. 優先順序
+
+請不要只摘要，請幫我整理出可以行動的結論。</pre>
+        </div>
+
+        <div class="replace">
+          <div class="replace-row"><b>格式提醒</b><span>是否能直接輸出 Word、Excel 或 PDF，會跟使用環境、外掛、轉檔工具有關。新手先用 Markdown、CSV、HTML 會比較穩定。</span></div>
+          <div class="replace-row"><b>可能成果</b><span>Markdown 分析報告、CSV 表格、分類摘要、行動建議、可延伸成文案或服務優化的方向。</span></div>
+        </div>
+      </section>
+
+      <section class="section feature" id="automation">
+        <div class="section-head">
+          <div class="num">4</div>
+          <div>
+            <span class="mini-label">自動化</span>
+            <h2>重複工作自動化</h2>
+          </div>
+        </div>
+        <div class="tag-row">
+          <span class="tag">活動營運</span>
+          <span class="tag">課程助教</span>
+          <span class="tag">行政流程</span>
+          <span class="tag">名單整理</span>
+          <span class="tag">團隊協作</span>
+        </div>
+
+        <div class="content-grid">
+          <div>
+            <p>每次開課或辦活動，你都要整理報名資料。流程可能包含確認付款、分類場次、標記特殊需求、整理提醒名單、產出通知文案。</p>
+            <p>這些事情不是做一次就結束，而是每次活動都會重複發生。這時候可以請 Codex 先幫你拆解流程，判斷哪些步驟可以自動化，哪些需要外部工具配合。</p>
+          </div>
+          <aside class="callout">
+            <h3>外部工具提醒</h3>
+            <p>如果只是整理名單、產出通知文案，不一定需要外掛。但如果要自動寄送 Email、更新 Google Sheets、同步到 Notion，就需要連接對應工具或使用外部自動化服務。</p>
+          </aside>
+        </div>
+
+        <div class="prompt">
+          <div class="prompt-head">
+            <span class="prompt-title">可複製指令</span>
+            <button class="copy-btn" type="button" data-copy="automation-prompt">複製</button>
+          </div>
+          <pre id="automation-prompt">我有一個每次都會重複發生的工作流程，請幫我設計成可以重複使用的自動化方式。
+
+我的工作情境是：
+【描述你的工作情境】
+
+目前流程是：
+1. 【步驟 1】
+2. 【步驟 2】
+3. 【步驟 3】
+4. 【步驟 4】
+5. 【步驟 5】
+
+我目前使用的工具是：
+【例如：Excel、Google Sheets、Gmail、Notion、沒有固定工具】
+
+請先幫我整理：
+1. 這個流程可以怎麼拆解
+2. 哪些步驟可以先半自動化
+3. 哪些步驟需要外部工具或外掛
+4. 需要準備哪些欄位或資料
+5. 第一版可以先做到什麼程度
+
+目前先不要直接寄出或同步資料，請先幫我整理成可以檢查的版本。</pre>
+        </div>
+
+        <div class="replace">
+          <div class="replace-row"><b>先做到</b><span>整理名單、分類對象、產出通知文案、設計表格欄位、建議自動化流程。</span></div>
+          <div class="replace-row"><b>可能成果</b><span>流程拆解表、半自動化方案、欄位設計、通知文案、外部工具需求清單。</span></div>
+        </div>
+      </section>
+
+      <section class="section feature" id="mvp">
+        <div class="section-head">
+          <div class="num">5</div>
+          <div>
+            <span class="mini-label">MVP 框架</span>
+            <h2>有副業想法，先梳理 MVP 框架</h2>
+          </div>
+        </div>
+        <div class="tag-row">
+          <span class="tag">副業新手</span>
+          <span class="tag">創業想法</span>
+          <span class="tag">課程服務</span>
+          <span class="tag">顧問方案</span>
+          <span class="tag">內容產品</span>
+        </div>
+
+        <div class="content-grid">
+          <div>
+            <p>你有一個副業想法，但還不確定大家會不會想要。很多人會卡在「我是不是要先做官網？」「要不要先開課？」「要不要先做完整產品？」</p>
+            <p>但 MVP 不一定是網站。它可能是一份問卷、一篇測試貼文、一個等待名單頁、一份服務介紹、一個簡單表單，或是一個最小版本的小工具。</p>
+          </div>
+          <aside class="note">
+            <h3>你會得到</h3>
+            <ul class="list">
+              <li>MVP 框架表。</li>
+              <li>目標受眾與痛點整理。</li>
+              <li>最小可行版本建議。</li>
+              <li>3 種測試方向。</li>
+              <li>接下來 7 天行動步驟。</li>
+            </ul>
+          </aside>
+        </div>
+
+        <div class="prompt">
+          <div class="prompt-head">
+            <span class="prompt-title">可複製指令</span>
+            <button class="copy-btn" type="button" data-copy="mvp-prompt">複製</button>
+          </div>
+          <pre id="mvp-prompt">我有一個副業想法，請先不要急著幫我做網站。
+
+請先幫我梳理一份 MVP 框架。
+
+我的副業想法是：
+【填入你的想法】
+
+我目前想服務的對象是：
+【填入目標受眾】
+
+我認為他們遇到的問題是：
+【填入痛點】
+
+我目前可以投入的時間或資源是：
+【例如：每週 3 小時、只有我一個人、還沒有預算】
+
+請幫我整理：
+1. 這個想法主要解決誰的問題
+2. 目標受眾最在意的痛點
+3. 第一版最小可行內容
+4. 現階段可以先不要做的功能
+5. 可以用什麼方式驗證需求
+6. 最適合先產出的測試素材
+7. 接下來 7 天可以執行的步驟
+
+請用表格整理，並給我 3 種不同的 MVP 測試方向。</pre>
+        </div>
+
+        <div class="replace">
+          <div class="replace-row"><b>可以延伸</b><span>服務介紹頁、問卷表單、等待名單頁、銷售頁大綱、IG 多圖腳本、內容測試貼文。</span></div>
+          <div class="replace-row"><b>可能成果</b><span>MVP 框架表、測試方向比較表、7 天行動清單、問卷題目、後續任務清單。</span></div>
+        </div>
+      </section>
+
+      <section class="section" id="formula">
+        <span class="mini-label">最後整理</span>
+        <h2>新手下指令公式</h2>
+        <p>如果你不知道怎麼開始，可以用這個公式。重點不是講得很專業，而是把任務、資料、成果格式、第一版和檢查項目說清楚。</p>
+
+        <div class="prompt">
+          <div class="prompt-head">
+            <span class="prompt-title">通用公式</span>
+            <button class="copy-btn" type="button" data-copy="formula-prompt">複製</button>
+          </div>
+          <pre id="formula-prompt">我想要完成【任務】
+
+目前我有【資料／檔案／網址】
+
+我希望你幫我產出【成果格式】
+
+請先做出【第一版】
+
+完成後請幫我檢查【檢查項目】
+
+如果有問題，請直接修正並告訴我改了什麼</pre>
+        </div>
+
+        <div class="callout" style="margin-top: 22px;">
+          <h3>最後提醒</h3>
+          <p>Codex 很適合幫你做第一版，但你還是需要檢查內容是否符合你的品牌、受眾和實際工作需求。把 Codex 想成執行助理，而不是完全不用確認的魔法工具。</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>更多 AI 工具與下班學習內容：<a href="https://www.instagram.com/mofans_2020/?hl=zh-tw">Instagram @mofans_2020</a></p>
+      <p>@MOFANS_2020</p>
+    </footer>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll("[data-copy]");
+    buttons.forEach((button) => {
+      button.addEventListener("click", async () => {
+        const target = document.getElementById(button.dataset.copy);
+        if (!target) return;
+        const text = target.innerText.trim();
+        try {
+          await navigator.clipboard.writeText(text);
+          const original = button.textContent;
+          button.textContent = "已複製";
+          setTimeout(() => {
+            button.textContent = original;
+          }, 1400);
+        } catch {
+          button.textContent = "請手動複製";
+        }
+      });
+    });
+
+    const tabs = Array.from(document.querySelectorAll(".tab"));
+    const sections = tabs
+      .map((tab) => document.querySelector(tab.getAttribute("href")))
+      .filter(Boolean);
+
+    const updateActiveTab = () => {
+      const current = sections.reduce((active, section) => {
+        const box = section.getBoundingClientRect();
+        if (box.top <= 130) return section;
+        return active;
+      }, sections[0]);
+
+      tabs.forEach((tab) => {
+        tab.classList.toggle("active", tab.getAttribute("href") === `#${current.id}`);
+      });
+    };
+
+    document.addEventListener("scroll", updateActiveTab, { passive: true });
+    updateActiveTab();
+  </script>
+</body>
+</html>
